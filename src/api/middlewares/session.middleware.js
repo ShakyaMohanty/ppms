@@ -1,4 +1,5 @@
 import * as userModel from '../models/users.model.js'
+import logger from '../services/logger.js';
 
 const verifySession = async (req, res, next) => {
     try{
@@ -11,19 +12,35 @@ const verifySession = async (req, res, next) => {
             // console.log(sessionId)
 
             if(!sessionId){
+                logger.warn({
+                    errorMessage: `Session Id not found in cookies, You are not authorized!`,
+                    status: 401
+                })
                 return res.status(401).json({message: `Session Id not found, You are not authorized!`})
             }
             const sessionUser = await userModel.findUserBySessionId(sessionId);
             if(!sessionUser){
+                logger.warn({
+                    errorMessage: `User not found with session Id`,
+                    status: 404
+                })
                 return res.status(404).json({message: `user not found with sessionId`})
             }
             if(sessionUser.session_expiry_time === null || sessionUser.session_expiry_time < new Date()){
+                logger.warn({
+                    errorMessage: `Session expired`,
+                    status: 403
+                })
                 return res.status(403).json({message: `session expired!`})
             }
             req.user = sessionUser;
             next();
             // return;
         }else {
+            logger.warn({
+                errorMessage: `Cookie is blank`,
+                status: 401
+            })
             return res.status(401).json({message: `Session Id token not found!`})
         }
 
@@ -50,6 +67,10 @@ const verifySession = async (req, res, next) => {
         // }
     }catch(error){
         console.error('Session verification failed:', error);
+        logger.error({
+            errorMessage: `Session verification failed`,
+            status: 500
+        })
         next(error);
     }
     

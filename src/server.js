@@ -8,6 +8,8 @@ import { startSessionCleanup } from './api/services/sessionCleanup.js';
 import { startResetPasswordTokenCleanup } from './api/services/tokenCleanup.js';
 import path from 'path'
 import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
+import logger from './api/services/logger.js';
 
 const app = express();
 startSessionCleanup();
@@ -21,6 +23,7 @@ const PORT = process.env.PORT || 8000;
 // });
 
 app.use(express.json());
+app.use(cookieParser());
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // express static comes with security so we don't need to normalize our __dirname
@@ -34,14 +37,17 @@ app.use(express.static(path.join(__dirname, '../public'), {
 
 app.use('/api', [userRouter, shiftRouter, tankRouter]);
 
+
 const startServer = async () => {
     try{
         await dbConnect();
         app.listen(PORT, ()=>{
+            logger.info("Server started");
             console.log(`Server listening on PORT http://127.0.0.1:${PORT}`);
         });
     }
     catch(error){
+        logger.error("Failed to start server")
         console.error('Failed to start server:', error);
         process.exit(1); // Exit the application if the connection fails
     }
