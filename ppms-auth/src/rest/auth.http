@@ -1,0 +1,52 @@
+### signup
+
+POST http://localhost:8080/api/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "tilu",
+    "email": "tilu@ppms.com",
+    "password": "password"
+}
+
+### Login
+
+POST http://localhost:8080/api/signin HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "saani",
+    "password": "password"
+}
+
+### forgot password
+
+POST http://localhost:8080/api/forgot-password HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "",
+}
+
+### reset password
+
+POST http://localhost:8080/api/reset-password HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "",
+    "newPassword": "",
+    "resetString": ""
+}
+
+### logout
+
+DELETE http://localhost:8080/api/signout HTTP/1.1
+Content-Type: application/json
+
+{
+}
+
+### Access the admin panel after authentication (for testing purposes)
+
+GET http://localhost:8080/api/admin-panel

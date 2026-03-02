@@ -1,0 +1,31 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "shakya",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch-path=./src ./src/server.js",
+    "create-tables": "node src/api/config/createTable.js",
+    "test-controller": "node src/api/controllers/users.controller.js",
+    "test-model": "node src/api/models/tanks.model.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "resend": "^6.1.0",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "mysql2": "^3.14.3",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^7.0.6",
+    "nodemon": "^3.1.10",
+    "uuid": "^11.1.0"
+  }
+}

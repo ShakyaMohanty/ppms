@@ -1,0 +1,48 @@
+### Add Tanks
+
+POST  http://localhost:8080/api/tanks HTTP/1.1
+Content-Type: application/json
+
+{
+    "tank_no": "T02",
+    "fuel_type": "Petrol",
+    "capacity_liters": 50000000.9,
+    "max_threshold": 490000.9,
+    "min_threshold": 100000.0,
+    "status": "Active",
+    "location": "Warehouse A",
+    "installation_date": "2023-10-01",
+    "last_calibration_date": "2024-01-15"
+}
+
+### Get All Tanks
+GET http://localhost:8080/api/tanks HTTP/1.1
+Content-Type: application/json
+
+### Get Tank by ID
+GET http://localhost:8080/api/tanks/1 HTTP/1.1
+Content-Type: application/json
+
+### Update Tank by ID
+PUT http://localhost:8080/api/tanks/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "fuel_type": "Diesel",
+    "capacity_liters": 60000000.9,
+    "max_threshold": 590000.9,
+    "min_threshold": 150000.0,
+    "status": "Active",
+    "location": "Warehouse B",
+    "installation_date": "2023-10-01",
+    "last_calibration_date": "2024-01-15"
+}
+
+### Delete Tank by ID
+DELETE http://localhost:8080/api/tanks/1 HTTP/1.1
+Content-Type: application/json
+
+### Get Tanks by Fuel Type
+GET http://localhost:8080/api/tanks/fuel-types/Diesel HTTP/1.1
+Content-Type: application/json
+

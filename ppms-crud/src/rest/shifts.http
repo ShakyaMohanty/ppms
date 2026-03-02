@@ -1,0 +1,34 @@
+### Add Shifts
+
+POST  http://localhost:8080/api/shifts HTTP/1.1
+Content-Type: application/json
+
+{
+    "shiftName": "Afternoon",
+    "startTime": "12:00 PM",
+    "endTime": "06:00 PM",
+    "status": "Inactive"
+}
+
+### Get All Shifts
+GET http://localhost:8080/api/shifts HTTP/1.1
+Content-Type: application/json
+
+### Get Shift by ID
+GET http://localhost:8080/api/shifts/1 HTTP/1.1
+Content-Type: application/json
+
+### Update Shift
+PUT http://localhost:8080/api/shifts/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "shiftName": "Evening",
+    "startTime": "02:00 PM",
+    "endTime": "10:00 PM",
+    "status": "Active"
+}
+
+### delete Shift
+DELETE http://localhost:8080/api/shifts/5 HTTP/1.1
+Content-Type: application/json
