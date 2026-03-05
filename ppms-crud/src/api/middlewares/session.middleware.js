@@ -10,7 +10,7 @@ const verifySession = async (req, res, next) => {
       });
     }
     const response = await axios.post(
-      'http://192.168.56.103:8080/api/internal/verify-session',
+      'http://10.1.5.249:8080/api/internal/verify-session',
       {},
       {
         headers: {
