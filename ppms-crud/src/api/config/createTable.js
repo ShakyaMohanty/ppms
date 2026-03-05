@@ -25,6 +25,8 @@ const createRoleTable = async () => {
          }
      
         console.log('Table created successfully or already exists.');
+        await pool.end();
+        process.exit(0);
      }catch(error){
         console.error('Error creating table:', error);
         process.exit(1);
