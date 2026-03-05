@@ -42,7 +42,7 @@ DB_USER=ppmsuser
 DB_PASSWORD=
 DB_NAME=ppms
 NODE_ENV=development
-RESEND_API_KEY = re_LWhR3gAt_kLDg4mJwReFaR4LeHwpXXaPn
+RESEND_API_KEY=re_LWhR3gAt_kLDg4mJwReFaR4LeHwpXXaPn
 EOF
 
 npm run create-tables

@@ -10,7 +10,7 @@ const verifySession = async (req, res, next) => {
       });
     }
     const response = await axios.post(
-      'http://10.1.5.249:8080/api/internal/verify-session',
+      `http://${process.env.AUTH_SERVICE_URL}/api/internal/verify-session`,
       {},
       {
         headers: {
