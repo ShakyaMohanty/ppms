@@ -47,7 +47,8 @@ const startServer = async () => {
     try{
         await dbConnect();
         app.listen(PORT, ()=>{
-            console.log(`Server listening on PORT http://127.0.0.1:${PORT}`);
+            // console.log(`Server listening on PORT http://127.0.0.1:${PORT}`);
+            console.log(`Server listening on PORT http://0.0.0.0:${PORT}`); // Used in EC2 instance to allow external access
         });
     }
     catch(error){

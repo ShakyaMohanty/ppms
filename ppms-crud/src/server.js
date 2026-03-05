@@ -26,14 +26,6 @@ app.use((req, res, next) => {
   res.setHeader('Expires', '0');
   next();
 });
-// app._router.stack.forEach((r) => {
-//   if (r.route) {
-//     console.log(
-//       Object.keys(r.route.methods).join(',').toUpperCase(),
-//       r.route.path
-//     );
-//   }
-// });
 app.use('/api', testRouter);
 
 const startServer = async () => {

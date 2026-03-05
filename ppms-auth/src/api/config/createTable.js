@@ -24,7 +24,9 @@ const createRoleTable = async () => {
             await new Promise(resolve => setTimeout(resolve, 50)); 
          }
      
-        console.log('Table created successfully or already exists.');
+         console.log('Table created successfully or already exists.');
+         await pool.end();
+         process.exit(0);
      }catch(error){
         console.error('Error creating table:', error);
         process.exit(1);
