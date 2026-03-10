@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // express static comes with security so we don't need to normalize our __dirname
