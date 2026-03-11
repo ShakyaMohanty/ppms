@@ -43,6 +43,7 @@ npm install
 cat <<EOF > /home/ec2-user/ppms/ppms-crud/.env
 PORT=8080
 AUTH_SERVICE_URL=http://10.1.5.249:8080
+CRUD_SERVICE_URL=http://10.1.2.40:8080
 DB_HOST=localhost
 DB_USER=ppmsuser
 DB_PASSWORD=

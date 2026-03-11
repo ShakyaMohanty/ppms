@@ -2,6 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import { dbConnect } from './api/config/db.js';
 import testRouter from './api/routes/test.route.js'
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./api/config/swagger_doc.js";
 import path from 'path'
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
@@ -10,6 +12,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(cookieParser());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // express static comes with security so we don't need to normalize our __dirname
@@ -32,7 +35,7 @@ const startServer = async () => {
     try{
         await dbConnect();
         app.listen(PORT, ()=>{
-            console.log(`Server listening on PORT http://0.0.0.0:${PORT}`);
+            console.log(`Server listening on PORT http://127.0.0.1:${PORT}`);
         });
     }
     catch(error){
