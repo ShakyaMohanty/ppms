@@ -12,5 +12,7 @@ router.put('/tanks/:id', verifySession, checkRole(['Admin', 'Manager']), Tank.ed
 router.delete('/tanks/:id', verifySession, checkRole(['Admin', 'Manager']), Tank.deleteTank);
 router.get('/tanks/fuel-types/:fuel_type', verifySession, checkRole(['Admin', 'Manager', 'Operator']), Tank.getAllTanksByFuelType);
 router.get('/tanks/get-fuel-types', verifySession, checkRole(['Admin', 'Manager', 'Operator']), Tank.getTankFuelTypes);
-
+router.get('/only', (req, res) => {
+    res.status(200).json({message: `successfully getting all tanks`});
+});
 export default router;

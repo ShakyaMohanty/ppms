@@ -1,6 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import { dbConnect } from './api/config/db.js';
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./api/config/swagger_doc.js";
 import userRouter from './api/routes/users.route.js'
 import shiftRouter from './api/routes/shifts.route.js'
 import tankRouter from './api/routes/tanks.route.js'
@@ -11,6 +13,8 @@ import { startSessionCleanup } from './api/services/sessionCleanup.js';
 import { startResetPasswordTokenCleanup } from './api/services/tokenCleanup.js';
 import path from 'path'
 import { fileURLToPath } from 'url';
+import cors from 'cors';
+
 
 const app = express();
 startSessionCleanup();
@@ -24,6 +28,9 @@ const PORT = process.env.PORT || 8000;
 // });
 
 app.use(express.json());
+// This allows Swagger UI to actually talk to your API
+app.use(cors({ origin: true, credentials: true })); 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -48,7 +55,7 @@ const startServer = async () => {
         await dbConnect();
         app.listen(PORT, ()=>{
             // console.log(`Server listening on PORT http://127.0.0.1:${PORT}`);
-            console.log(`Server listening on PORT http://0.0.0.0:${PORT}`); // Used in EC2 instance to allow external access
+            console.log(`Server listening on PORT http://127.0.0.1:${PORT}`); // Used in EC2 instance to allow external access
         });
     }
     catch(error){

@@ -4,9 +4,9 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Fuel Tank CRUD API",
+      title: "Auth Service API",
       version: "1.0.0",
-      description: "CRUD service for managing fuel tanks"
+      description: "Auth service for managing users, sessions, and roles "
     },
 
     servers: [
@@ -15,7 +15,7 @@ const options = {
             description: "Local Development"
         },
         {
-            url: `${process.env.CRUD_SERVICE_URL}/api`,
+            url: `${process.env.AUTH_SERVICE_URL}/api`,
             description: "VPC Internal"
         },
         {
@@ -29,7 +29,7 @@ const options = {
         bearerAuth: {
           type: "http",
           scheme: "bearer",
-          bearerFormat: "JWT"
+          bearerFormat: "UUID"
         }
       }
     }
