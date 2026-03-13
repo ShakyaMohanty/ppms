@@ -3,14 +3,14 @@ import axios from 'axios';
 const verifySession = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
-
+    console.log(authHeader);
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({
         message: 'Authorization token missing'
       });
     }
     const response = await axios.post(
-      `http://${process.env.AUTH_SERVICE_URL}/api/internal/verify-session`,
+      `${process.env.AUTH_SERVICE_URL}/api/internal/verify-session`,
       {},
       {
         headers: {
@@ -19,6 +19,7 @@ const verifySession = async (req, res, next) => {
         }
       }
     );
+    console.log(response);
 
     // 🔑 THIS is where req.user is set in VM-1
     req.user = response.data.user;

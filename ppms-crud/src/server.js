@@ -2,10 +2,10 @@ import 'dotenv/config';
 import express from 'express';
 import { dbConnect } from './api/config/db.js';
 import testRouter from './api/routes/test.route.js';
-// import shiftRouter from './api/routes/shifts.route.js';
-import tanksRouter from './api/routes/tanks.route.js';
-// import pumpRouter from './api/routes/pumps.route.js';
-// import operatorRouter from './api/routes/operators.route.js';
+import shiftRouter from './api/routes/shifts.route.js';
+import tankRouter from './api/routes/tanks.route.js';
+import pumpRouter from './api/routes/pumps.route.js';
+import operatorRouter from './api/routes/operators.route.js';
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./api/config/swagger_doc.js";
 import path from 'path'
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
   res.setHeader('Expires', '0');
   next();
 });
-app.use('/api', [testRouter, tanksRouter]);
+app.use('/api', [testRouter, tankRouter, shiftRouter, pumpRouter, operatorRouter]);
 
 const startServer = async () => {
     try{

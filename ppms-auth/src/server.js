@@ -4,10 +4,6 @@ import { dbConnect } from './api/config/db.js';
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./api/config/swagger_doc.js";
 import userRouter from './api/routes/users.route.js'
-import shiftRouter from './api/routes/shifts.route.js'
-import tankRouter from './api/routes/tanks.route.js'
-import pumpRouter from './api/routes/pumps.route.js'
-import operatorRouter from './api/routes/operators.route.js'
 import remoteSessionRouter from './api/routes/verifySessionRemote.route.js'
 import { startSessionCleanup } from './api/services/sessionCleanup.js';
 import { startResetPasswordTokenCleanup } from './api/services/tokenCleanup.js';
@@ -48,7 +44,7 @@ app.use((req, res, next) => {
   res.setHeader('Expires', '0');
   next();
 });
-app.use('/api', [userRouter, shiftRouter, tankRouter, remoteSessionRouter]);
+app.use('/api', [userRouter, remoteSessionRouter]);
 
 const startServer = async () => {
     try{

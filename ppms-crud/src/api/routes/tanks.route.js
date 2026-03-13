@@ -15,5 +15,4 @@ router.get('/tanks/get-fuel-types', verifySession, checkRole(['Admin', 'Manager'
 router.get('/only', (req, res) => {
     res.status(200).json({message: `successfully getting all tanks`});
 });
-
 export default router;

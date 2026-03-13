@@ -1,0 +1,36 @@
+### Add Operators
+
+POST  http://localhost:8080/api/operators HTTP/1.1
+Content-Type: application/json
+
+{
+    "shiftName": "Afternoon",
+    "startTime": "12:00 PM",
+    "endTime": "06:00 PM",
+    "status": "Inactive"
+}
+
+### Get All Operators
+GET http://localhost:8080/api/operators HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer 4e9f93d0-238f-4535-9343-f25057e769de
+
+
+### Get Operator by ID
+GET http://localhost:8080/api/operators/1 HTTP/1.1
+Content-Type: application/json
+
+### Update Operator
+PUT http://localhost:8080/api/operators/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "shiftName": "Evening",
+    "startTime": "02:00 PM",
+    "endTime": "10:00 PM",
+    "status": "Active"
+}
+
+### delete Operator
+DELETE http://localhost:8080/api/operators/5 HTTP/1.1
+Content-Type: application/json

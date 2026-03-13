@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as User  from '../controllers/users.controller.js'
-import {verifySession} from '../middlewares/session.middleware.js'
-import { checkRole } from '../middlewares/verifyRole.middleware.js';
+// import {verifySession} from '../middlewares/session.middleware.js'
+
 const router = Router();
 /**
  * @swagger
@@ -49,23 +49,6 @@ router.post('/signup', User.signupUser)
 router.post('/signin', User.signinUser)
 /**
  * @swagger
- * /admin-panel:
- *   get:
- *     summary: Access the Admin Panel
- *     tags: [Admin]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Access granted
- *       403:
- *         description: Forbidden - Insufficient permissions
- */
-router.get('/admin-panel', verifySession, checkRole(['Admin', 'Manager']), (req, res)=>{
-    res.status(200).json({message: 'Accessing Admin Panel successful', user: req.user})
-})
-/**
- * @swagger
  * /signout:
  *   delete:
  *     summary: Log out user
@@ -76,7 +59,8 @@ router.get('/admin-panel', verifySession, checkRole(['Admin', 'Manager']), (req,
  *       200:
  *         description: Signed out successfully
  */
-router.delete('/signout', verifySession, User.signoutUser)
+// router.delete('/signout', verifySession, User.signoutUser)
+router.delete('/signout', User.signoutUser);
 /**
  * @swagger
  * /forgot-password:
